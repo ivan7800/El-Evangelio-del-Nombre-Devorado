@@ -1,0 +1,16 @@
+{
+  "name": "El Evangelio del Nombre Devorado",
+  "short_name": "Evangelio",
+  "description": "Grimorio interactivo del Universo 404 de I. Roig.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#120b08",
+  "background_color": "#070504",
+  "icons": [
+    {"src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}

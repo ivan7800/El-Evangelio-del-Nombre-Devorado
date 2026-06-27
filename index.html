@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#120b08">
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="El Evangelio del Nombre Devorado: grimorio interactivo del Universo 404 de I. Roig.">
+  <meta name="author" content="I. Roig">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="El Evangelio del Nombre Devorado">
+  <meta property="og:description" content="Grimorio interactivo del Universo 404: lector ritual, códice, símbolos, skins, audio ambiental y modo offline.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/og-image.jpg">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none';">
+  <title>El Evangelio del Nombre Devorado</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-skin="grimorio">
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <div class="ambient-bg" aria-hidden="true">
+    <span class="orb orb-one"></span>
+    <span class="orb orb-two"></span>
+    <span class="noise"></span>
+  </div>
+
+  <header class="app-header" id="top">
+    <button class="icon-button menu-button" id="menuButton" aria-controls="sidebar" aria-expanded="false" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="#inicio" class="brand" data-route="inicio" aria-label="Inicio">
+      <span class="brand-mark">∅</span>
+      <span>
+        <strong>Evangelio</strong>
+        <small>Nombre Devorado</small>
+      </span>
+    </a>
+    <nav class="top-nav" aria-label="Navegación principal">
+      <a href="#biblioteca" data-route="biblioteca">Biblioteca</a>
+      <a href="#lector" data-route="lector">Lector</a>
+      <a href="#codice" data-route="codice">Códice</a>
+      <a href="#mapa" data-route="mapa">Mapa</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="audioButton" aria-pressed="false" aria-label="Activar o detener ambiente sonoro" title="Ambiente sonoro">◐</button>
+      <button class="icon-button" id="installButton" aria-label="Instalar aplicación" hidden>Instalar</button>
+    </div>
+  </header>
+
+  <aside class="sidebar" id="sidebar" aria-label="Panel lateral">
+    <div class="sidebar-head">
+      <strong>Índice ritual</strong>
+      <button class="icon-button" id="closeSidebar" aria-label="Cerrar menú">×</button>
+    </div>
+    <label class="search-box">
+      <span>Buscar en el Evangelio</span>
+      <input type="search" id="globalSearch" placeholder="Lendralis, Verbo, Renna…" autocomplete="off">
+    </label>
+    <div id="searchResults" class="search-results" aria-live="polite"></div>
+    <div class="side-section">
+      <p class="muted">Accesos</p>
+      <a href="#inicio" data-route="inicio">Portada</a>
+      <a href="#biblioteca" data-route="biblioteca">Versículos</a>
+      <a href="#lector" data-route="lector">Lectura</a>
+      <a href="#codice" data-route="codice">Códice</a>
+      <a href="#rituales" data-route="rituales">Rituales</a>
+      <a href="#mapa" data-route="mapa">Mapa</a>
+      <a href="#ajustes" data-route="ajustes">Ajustes</a>
+    </div>
+    <div class="side-section">
+      <p class="muted">Progreso</p>
+      <div class="mini-progress"><span id="miniProgress"></span></div>
+      <small id="miniProgressText">0% leído</small>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim" hidden></div>
+
+  <main id="main" tabindex="-1">
+    <section class="view hero-view" id="view-inicio" data-view="inicio">
+      <div class="hero-grid">
+        <div class="book-card" aria-label="Portada del grimorio">
+          <img src="assets/cover.jpeg" alt="Portada del libro Scripturae Devorata Nominae">
+          <span class="book-glow"></span>
+        </div>
+        <div class="hero-copy">
+          <p class="eyebrow">Grimorio del Nombre · Universo 404</p>
+          <h1>El Evangelio del Nombre Devorado</h1>
+          <p class="lead">Archivo ritual del Nombre Devorado: lectura inmersiva, códice, símbolos, progreso, skins, ambiente sonoro y modo offline.</p>
+          <div class="hero-actions">
+            <button class="primary" id="startReading">Entrar al Evangelio</button>
+            <button class="secondary" id="continueReading">Continuar lectura</button>
+            <a class="ghost" href="#codice" data-route="codice">Abrir códice</a>
+            <a class="ghost" href="#mapa" data-route="mapa">Ver mapa ritual</a>
+          </div>
+          <dl class="stats-row" id="statsRow"></dl>
+          <div class="ritual-warning" role="note">
+            <strong>Nota de lectura</strong>
+            <span>Experiencia literaria de horror. Todo funciona en el navegador: sin cuentas, sin analíticas y sin servidores propios.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-biblioteca" data-view="biblioteca" hidden>
+      <div class="section-title">
+        <p class="eyebrow">Biblioteca maldita</p>
+        <h2>Versículos, fragmentos y apéndices</h2>
+        <p>Códice apócrifo organizado en versículos, fragmentos recuperados, búsqueda interna, lectura guardada y símbolos.</p>
+      </div>
+      <div class="toolbar">
+        <label class="select-label">Filtro
+          <select id="chapterFilter">
+            <option value="all">Todo</option>
+            <option value="versiculo">Versículos</option>
+            <option value="fragmento">Fragmentos apócrifos</option>
+            <option value="apendice">Apéndices</option>
+            <option value="prologo">Prólogo</option>
+          </select>
+        </label>
+        <label class="select-label">Orden
+          <select id="chapterSort">
+            <option value="original">Original</option>
+            <option value="short">Más breves</option>
+            <option value="long">Más extensos</option>
+          </select>
+        </label>
+      </div>
+      <div class="chapter-grid" id="chapterGrid"></div>
+    </section>
+
+    <section class="view reader-view" id="view-lector" data-view="lector" hidden>
+      <div class="reader-shell">
+        <aside class="reader-index" aria-label="Índice de versículos">
+          <div class="reader-index-head">
+            <strong>Versículos</strong>
+            <span id="readerCount"></span>
+          </div>
+          <div id="readerChapterList" class="reader-chapter-list"></div>
+        </aside>
+        <article class="reader-panel" id="readerPanel">
+          <div class="reader-toolbar" role="group" aria-label="Herramientas de lectura">
+            <button class="secondary small" id="prevChapter">← Anterior</button>
+            <button class="secondary small" id="markDone">Marcar leído</button>
+            <button class="secondary small" id="bookmarkButton">Guardar marca</button>
+            <button class="secondary small" id="nextChapter">Siguiente →</button>
+          </div>
+          <div class="reader-progress" aria-hidden="true"><span id="readerProgress"></span></div>
+          <header class="chapter-header">
+            <p class="eyebrow" id="chapterMeta"></p>
+            <h2 id="chapterTitle"></h2>
+            <p id="chapterSub" class="chapter-sub"></p>
+          </header>
+          <div id="chapterContent" class="chapter-content"></div>
+          <footer class="chapter-footer">
+            <button class="primary" id="nextFromFooter">Continuar al siguiente versículo</button>
+            <a href="#biblioteca" data-route="biblioteca">Volver a biblioteca</a>
+          </footer>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" id="view-codice" data-view="codice" hidden>
+      <div class="section-title">
+        <p class="eyebrow">Códice vivo</p>
+        <h2>Entidades, lugares y símbolos</h2>
+        <p>Un panel de referencia para que la app sea más que un lector: una puerta de entrada al universo de la obra.</p>
+      </div>
+      <div class="codex-layout">
+        <div>
+          <h3>Entradas del códice</h3>
+          <div id="loreGrid" class="lore-grid"></div>
+        </div>
+        <div>
+          <h3>Símbolos rituales</h3>
+          <div id="symbolGrid" class="symbol-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-rituales" data-view="rituales" hidden>
+      <div class="section-title">
+        <p class="eyebrow">Ritual de lectura</p>
+        <h2>Rituales de lectura</h2>
+        <p>Objetivos internos del grimorio: progreso, marcas, logros y descubrimientos sin salir de la obra.</p>
+      </div>
+      <div class="ritual-grid" id="ritualGrid"></div>
+    </section>
+
+    <section class="view" id="view-mapa" data-view="mapa" hidden>
+      <div class="section-title">
+        <p class="eyebrow">Cartografía imposible</p>
+        <h2>Mapa del Evangelio</h2>
+        <p>Mapa literario abstracto del grimorio y sus territorios internos: Lendralis, Vélisar, Renna, el Faro y el Libro del Hueso.</p>
+      </div>
+      <div class="map-board" id="mapBoard">
+        <button class="map-node node-lendralis" data-term="Lendralis"><span>Lendralis</span></button>
+        <button class="map-node node-velisar" data-term="Vélisar"><span>Vélisar</span></button>
+        <button class="map-node node-lake" data-term="Renna la Vigía"><span>Lago de Renna</span></button>
+        <button class="map-node node-library" data-term="Libro del Hueso"><span>Biblioteca</span></button>
+        <button class="map-node node-faro" data-term="Vael Theryon"><span>Faro</span></button>
+        <div class="map-lines" aria-hidden="true"></div>
+      </div>
+      <div class="map-info" id="mapInfo">Pulsa un nodo para abrir su entrada en el códice.</div>
+    </section>
+
+    <section class="view" id="view-ajustes" data-view="ajustes" hidden>
+      <div class="section-title">
+        <p class="eyebrow">Control de experiencia</p>
+        <h2>Ajustes</h2>
+        <p>Skins completos, tamaño de letra, ancho de lectura, efectos visuales y accesibilidad.</p>
+      </div>
+      <div class="settings-grid">
+        <fieldset>
+          <legend>Skin visual</legend>
+          <div class="skin-grid" id="skinGrid"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Lectura</legend>
+          <label>Tamaño de texto <input type="range" id="fontScale" min="92" max="124" value="100"></label>
+          <label>Ancho de columna <input type="range" id="readerWidth" min="58" max="86" value="72"></label>
+          <label><input type="checkbox" id="effectsToggle" checked> Efectos visuales sutiles</label>
+          <label><input type="checkbox" id="dyslexiaToggle"> Modo claridad / alta legibilidad</label>
+        </fieldset>
+        <fieldset>
+          <legend>Datos locales</legend>
+          <p class="muted">El progreso se guarda solo en este navegador mediante localStorage.</p>
+          <button class="secondary" id="exportProgress">Exportar progreso</button>
+          <button class="danger" id="resetProgress">Borrar progreso</button>
+        </fieldset>
+      </div>
+    </section>
+  </main>
+
+  <button class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="src/content.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

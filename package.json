@@ -1,0 +1,11 @@
+{
+  "name": "el-evangelio-nombre-devorado",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/smoke-static.mjs"
+  },
+  "devDependencies": {},
+  "description": "Grimorio interactivo del Universo 404 listo para GitHub Pages."
+}
